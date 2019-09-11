@@ -1,4 +1,4 @@
-# pg-backup-docker
+# mysql-backup-docker
 
 A background backup utility for MySQL and AWS S3
 
