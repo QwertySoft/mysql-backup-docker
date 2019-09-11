@@ -1,6 +1,6 @@
 # pg-backup-docker
 
-A background backup utility for postgreSQL and AWS
+A background backup utility for MySQL and AWS S3
 
 Docker compose example
 
@@ -9,39 +9,35 @@ version: '3'
 
 services:
   db:
-    image: postgres:latest
+    image: mariadb:latest
     restart: always
-    ports:
-      - 5432:5432
     environment:
-      POSTGRES_PASSWORD: 'postgres'
-    volumes:
-      - database_data:/var/lib/postgresql/data
+      MYSQL_DATABASE: database
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test-pwd
 
   backup:
-    image: pg_backup:latest
+    image: qwertysoft/mysql-backup-docker:latest
     restart: always
     environment:
-      POSTGRES_DATABASE: 'database'
-      POSTGRES_HOST: 'db'
-      POSTGRES_PORT: '5432'
-      POSTGRES_PASSWORD: 'postgres'
-      POSTGRES_USER: 'postgres'
-      AWS_ACCESS_KEY_ID: 'xxxxxxxx'
-      AWS_SECRET_ACCESS_KEY: 'xxxxxxxx'
-      BUCKET: 'bucket'
-      PREFIX: 'db'
-      MAIL_FROM: 'XXX'
-      MAIL_HOST: 'mail..com'
-      MAIL_PORT: '587'
-      MAIL_PASSWORD: 'mail_pass'
-      MAIL_TO: 'mail@mail.com'
+      MYSQL_DATABASE: database
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_PASSWORD: test-pwd
+      MYSQL_USER: test
+      AWS_ACCESS_KEY_ID: xxxxxxxx
+      AWS_SECRET_ACCESS_KEY: xxxxxxxx
+      BUCKET: bucket
+      PREFIX: db
+      MAIL_FROM: mail@example.com
+      MAIL_HOST: mail.example.com'
+      MAIL_PORT: 587
+      MAIL_PASSWORD: mail_pass
+      MAIL_TO: mail@example.com
     volumes:
       - database_backup:/backups
 
 volumes:
-  database_data:
-    driver: local
   database_backup:
     driver: local
 ```
