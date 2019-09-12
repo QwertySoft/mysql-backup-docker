@@ -25,7 +25,7 @@ if [ ! -z "$MAIL_TO" ]; then
         --server "${MAIL_HOST}" \
         --port "${MAIL_PORT}" \
         --auth LOGIN \
-        --auth-user "${MAIL_FROM}" \
+        --auth-user "${MAIL_USER}" \
         --auth-password "${MAIL_PASSWORD}" \
         --to $MAIL_TO \
         --body "Automated backups " \
