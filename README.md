@@ -30,7 +30,8 @@ services:
       BUCKET: bucket
       PREFIX: db
       MAIL_FROM: mail@example.com
-      MAIL_HOST: mail.example.com'
+      MAIL_USER: mail@example.com
+      MAIL_HOST: mail.example.com
       MAIL_PORT: 587
       MAIL_PASSWORD: mail_pass
       MAIL_TO: mail@example.com
