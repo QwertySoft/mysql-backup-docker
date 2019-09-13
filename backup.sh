@@ -27,7 +27,7 @@ if [ ! -z "$MAIL_TO" ]; then
         --auth LOGIN \
         --auth-user "${MAIL_USER}" \
         --auth-password "${MAIL_PASSWORD}" \
-        --to $MAIL_TO \
+        --to "$MAIL_TO" \
         --body "Automated backups " \
         --attach $FILE || exit 5
 fi
